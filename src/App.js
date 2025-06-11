@@ -9,16 +9,20 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]) // state variable for movie results
+  const [loading, setLoading] = useState(false);
 
   function handleSearchChange(newTerm) {
     setSearchTerm(newTerm);
+
   }
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
+    setLoading(true); // start loading
+
     const results = await searchMovies(searchTerm);
     setMovies(results);
-    console.log(results);
+    setLoading(false); // stop loading
   }
   return (
     <>
@@ -28,6 +32,8 @@ function App() {
         onChange={handleSearchChange}
         onSubmit={handleSearchSubmit}
       />
+      {loading && <p>Loading...</p>}
+
       {movies.length > 0 ? (
         movies.map((movie) => (
           <MovieCard
