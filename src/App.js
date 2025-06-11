@@ -1,19 +1,23 @@
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
+import { searchMovies } from "./utils/omdbApi";
 
 
 
 function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [movies, setMovies] = useState("") // state variable for movie results
 
   function handleSearchChange(newTerm) {
     setSearchTerm(newTerm);
   }
 
-  function handleSearchSubmit(e) {
+  async function handleSearchSubmit(e) {
     e.preventDefault();
-    console.log("Searching for: ", searchTerm);
+    const results = await searchMovies(searchTerm);
+    setMovies(results);
+    console.log(results);
   }
   return (
     <>
