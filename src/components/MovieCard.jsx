@@ -1,4 +1,4 @@
-
+import "../styles/MovieCard.css";
 
 function MovieCard(props) {
   const { title, year, poster } = props; // destructure for easier access
