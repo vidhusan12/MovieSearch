@@ -28,7 +28,18 @@ function App() {
         onChange={handleSearchChange}
         onSubmit={handleSearchSubmit}
       />
-      <MovieCard title="Inception" year="2010" poster="some-url-here" />
+      {movies.length > 0 ? (
+        movies.map((movie) => (
+          <MovieCard
+            key={movie.imdbID}
+            title={movie.Title}
+            year={movie.Year}
+            poster={movie.Poster}
+          />
+        ))
+      ) : (
+        <p>No results found. Try another title</p>
+      )}
     </>
 
   )
