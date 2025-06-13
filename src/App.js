@@ -46,14 +46,18 @@ function App() {
   }
   return (
     <>
-      <h1>MovieSearch App</h1>
-      <SearchBar
-        value={searchTerm}
-        onChange={handleSearchChange}
-        onSubmit={handleSearchSubmit}
-      />
-      <button onClick={handleClearSearch}>Clear Search</button>
-      {loading && <p>Loading...</p>}
+      <div className="search-section">
+        <h1>MovieSearch App</h1>
+        <SearchBar
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onSubmit={handleSearchSubmit}
+        />
+        <button type="submit" className="search-button">Search</button>
+        <button onClick={handleClearSearch} className="clear-button">Clear Search</button>
+      </div>
+
+      {loading && <p className="loading">Loading...</p>}
       {error && <p className="error">{error}</p>}
       <div className="movie-list">
         {movies.length > 0 ? (
