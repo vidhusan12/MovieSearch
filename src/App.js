@@ -2,6 +2,8 @@ import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import { searchMovies } from "./utils/omdbApi";
 import MovieCard from "./components/MovieCard";
+import "../src/styles/MovieList.css";
+
 
 
 
@@ -33,7 +35,7 @@ function App() {
         onSubmit={handleSearchSubmit}
       />
       {loading && <p>Loading...</p>}
-
+      <div className="movie-list">
       {movies.length > 0 ? (
         movies.map((movie) => (
           <MovieCard
@@ -46,6 +48,7 @@ function App() {
       ) : (
         <p>No results found. Try another title</p>
       )}
+      </div>
     </>
 
   )
