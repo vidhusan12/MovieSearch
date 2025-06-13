@@ -50,14 +50,51 @@
 
 .search-section {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   margin-top: 40px;
   flex-wrap: wrap;
 }
 
+.search-section h1 {
+  flex-shrink: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.search-section .search-button,
+.search-section .clear-button {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-grow: 1; /* Let it grow to fill available space */
+  max-width: 600px; /* Optional: limit max width */
+}
+
+.search-controls input {
+  flex-grow: 1; /* Make input grow to fill space */
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 40px; /* Match buttons */
+  box-sizing: border-box;
+}
+
+.search-controls input,
+.search-controls button {
+  margin: 0;
+  vertical-align: middle;
+}
 
 @media (max-width: 600px) {
   .movie-list {

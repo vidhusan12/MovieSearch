@@ -1,4 +1,4 @@
-
+import "../styles/MovieList.css";
 
 function SearchBar({ value, onChange, onSubmit }) {
   return (

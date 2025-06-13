@@ -48,13 +48,19 @@ function App() {
     <>
       <div className="search-section">
         <h1>MovieSearch App</h1>
-        <SearchBar
-          value={searchTerm}
-          onChange={handleSearchChange}
-          onSubmit={handleSearchSubmit}
-        />
-        <button type="submit" className="search-button">Search</button>
-        <button onClick={handleClearSearch} className="clear-button">Clear Search</button>
+        <div className="search-controls">
+          <SearchBar
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onSubmit={handleSearchSubmit}
+          />
+          <button className="search-button" type="submit" form="search-form">
+            Search
+          </button>
+          <button onClick={handleClearSearch} className="clear-button">
+            Clear Search
+          </button>
+        </div>
       </div>
 
       {loading && <p className="loading">Loading...</p>}
