@@ -12,6 +12,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]) // state variable for movie results
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleSearchChange(newTerm) {
     setSearchTerm(newTerm);
@@ -20,15 +21,21 @@ function App() {
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
-    if(!searchTerm.trim()){
+    if (!searchTerm.trim()) {
       alert("Please enter a movie title...")
       return;
     }
     setLoading(true); // start loading
+    setError(null); // clear previous error
 
-    const results = await searchMovies(searchTerm);
-    setMovies(results);
+    try {
+      const results = await searchMovies(searchTerm);
+      setMovies(results);
+    } catch (err) {
+      setError("Something went wrong. Please try again later.");
+    }
     setLoading(false); // stop loading
+
   }
   return (
     <>
@@ -39,19 +46,20 @@ function App() {
         onSubmit={handleSearchSubmit}
       />
       {loading && <p>Loading...</p>}
+      {error && <p className="error">{error}</p>}
       <div className="movie-list">
-      {movies.length > 0 ? (
-        movies.map((movie) => (
-          <MovieCard
-            key={movie.imdbID}
-            title={movie.Title}
-            year={movie.Year}
-            poster={movie.Poster}
-          />
-        ))
-      ) : (
-        <p>No results found. Try another title</p>
-      )}
+        {movies.length > 0 ? (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie.imdbID}
+              title={movie.Title}
+              year={movie.Year}
+              poster={movie.Poster}
+            />
+          ))
+        ) : (
+          <p>No results found. Try another title</p>
+        )}
       </div>
     </>
 
