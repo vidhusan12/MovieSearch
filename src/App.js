@@ -20,6 +20,10 @@ function App() {
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
+    if(!searchTerm.trim()){
+      alert("Please enter a movie title...")
+      return;
+    }
     setLoading(true); // start loading
 
     const results = await searchMovies(searchTerm);
