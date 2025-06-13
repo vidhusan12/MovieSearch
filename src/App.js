@@ -18,6 +18,13 @@ function App() {
     setSearchTerm(newTerm);
 
   }
+  //this function will set the searchTerm,movies to empty and clear the error and loading state
+  function handleClearSearch() {
+    setSearchTerm("");
+    setMovies([]);
+    setError(null);
+    setLoading(false);
+  }
 
   async function handleSearchSubmit(e) {
     e.preventDefault();
@@ -45,6 +52,7 @@ function App() {
         onChange={handleSearchChange}
         onSubmit={handleSearchSubmit}
       />
+      <button onClick={handleClearSearch}>Clear Search</button>
       {loading && <p>Loading...</p>}
       {error && <p className="error">{error}</p>}
       <div className="movie-list">
